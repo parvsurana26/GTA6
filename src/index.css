@@ -1,0 +1,293 @@
+@import "tailwindcss";
+
+ @font-face {
+  font-family: "pricedown";
+  src: url("./pricedown.otf");
+ }
+
+html,body {
+   width: 100%;
+   height: 100%;
+   font-family: 'pricedown';
+}
+
+.features-section {
+  @apply relative py-32 bg-black min-h-screen;
+}
+
+.features-section h2 {
+  font-family: "pricedown";
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(157, 0, 255, 0.5);
+  letter-spacing: 2px;
+}
+
+.feature-card {
+  @apply relative rounded-xl p-8 transition-all duration-500;
+  background: rgba(20, 20, 20, 0.8);
+  border: 1px solid rgba(255, 107, 0, 0.1);
+  min-height: 300px;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 100%, transparent 0%, rgba(255,255,255,0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.feature-card:hover {
+  @apply transform -translate-y-2;
+  border-color: rgba(255, 107, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 107, 0, 0.1);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card i {
+  @apply text-8xl mb-6 block;
+  color: #ff6b00;
+  transition: transform 0.5s ease;
+}
+
+.feature-card:hover i {
+  transform: scale(1.1) translateY(-5px);
+}
+
+.feature-card h3 {
+  @apply text-3xl font-bold mb-4 text-white;
+  font-family: 'pricedown', sans-serif;
+}
+
+.feature-card p {
+  @apply text-gray-400 text-lg leading-relaxed;
+}
+
+.feature-card:hover p {
+  @apply text-gray-300;
+}
+
+.gallery-item {
+  @apply cursor-pointer;
+}
+
+.character-card {
+  @apply relative cursor-pointer bg-black;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  height: 600px;
+}
+
+.character-card:hover {
+  transform: translateZ(60px) rotateX(10deg);
+}
+
+.character-content {
+  @apply absolute bottom-0 left-0 right-0 p-8 z-20;
+  transform: translateY(20px);
+  transition: transform 0.5s ease;
+}
+
+.character-image-wrapper {
+  @apply relative w-full h-full overflow-hidden rounded-xl;
+  transform-style: preserve-3d;
+}
+
+.character-image {
+  @apply w-full h-full object-cover object-top;
+  transform: scale(1.2);
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.character-card:hover .character-image {
+  transform: scale(1.1);
+}
+
+.character-overlay {
+  @apply absolute inset-0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.5) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.character-card:hover .character-overlay {
+  opacity: 1;
+}
+
+.character-title {
+  @apply text-5xl font-bold mb-3;
+  color: #ff6b00;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.character-description {
+  @apply text-lg text-gray-300;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease 0.1s;
+}
+
+.character-card:hover .character-content {
+  transform: translateY(0);
+}
+
+.character-card:hover .character-title,
+.character-card:hover .character-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.character-shine {
+  @apply absolute inset-0 opacity-0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 165, 0, 0.1) 45%,
+    rgba(255, 165, 0, 0.2) 50%,
+    rgba(255, 165, 0, 0.1) 55%,
+    transparent 100%
+  );
+  transition: opacity 0.5s ease;
+}
+
+.character-card:hover .character-shine {
+  opacity: 1;
+  transform: translateX(100%);
+  transition: transform 0.8s ease;
+}
+
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateZ(20px); }
+  50% { transform: translateZ(40px); }
+}
+
+.characters-wrapper {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto px-6;
+  perspective: 2000px;
+}
+
+.showcase-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.showcase-section {
+  @apply relative min-h-screen;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.7)),
+              url('/vice-city-bg.jpg') center/cover fixed;
+}
+
+.feature-showcase-container {
+  @apply relative z-10 py-32;
+  perspective: 1500px;
+}
+
+.feature-title-container {
+  @apply relative mb-32 overflow-hidden;
+  transform-style: preserve-3d;
+}
+
+.feature-title {
+  @apply text-8xl text-center;
+  text-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
+  animation: titleFloat 4s ease-in-out infinite;
+}
+
+.feature-card-container {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-6;
+  transform-style: preserve-3d;
+}
+
+.feature-showcase-card {
+  @apply relative rounded-xl overflow-hidden;
+  height: 400px;
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.feature-showcase-card::before {
+  content: '';
+  @apply absolute inset-0;
+  background: linear-gradient(45deg, rgba(255,107,0,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.feature-showcase-card:hover::before {
+  opacity: 1;
+}
+
+.feature-showcase-content {
+  @apply absolute inset-0 flex flex-col justify-end p-8;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  transform: translateZ(30px);
+}
+
+.feature-showcase-icon {
+  @apply text-6xl text-white mb-4;
+  text-shadow: 0 0 20px rgba(255,107,0,0.5);
+}
+
+.feature-showcase-title {
+  @apply text-3xl font-bold text-white mb-2;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.feature-showcase-description {
+  @apply text-gray-300 text-lg;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease 0.1s;
+}
+
+.feature-showcase-card:hover .feature-showcase-title,
+.feature-showcase-card:hover .feature-showcase-description {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@keyframes titleFloat {
+  0%, 100% { transform: translateY(0) translateZ(0); }
+  50% { transform: translateY(-20px) translateZ(50px); }
+}
+
+.feature-parallax-bg {
+  @apply absolute inset-0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,107,0,0.1), transparent 70%);
+  filter: blur(40px);
+  opacity: 0.5;
+  transform: translateZ(-50px);
+}
+
+.scroll-indicator {
+  @apply absolute bottom-10 left-1/2 -translate-x-1/2;
+  animation: scrollBounce 2s infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.gsap-reveal, .gsap-reveal-content, .gsap-reveal-button {
+  will-change: transform, opacity;
+}
